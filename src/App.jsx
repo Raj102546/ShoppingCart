@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import NavBar from "./components/NavBar";
+import Shop from "./pages/ShopPage";
 
 function App() {
+  
   return (
-    <div>
-      
+    <div className="bg-[#0f0f0f]">
+      <NavBar />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
