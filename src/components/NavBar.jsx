@@ -1,6 +1,23 @@
+import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 export default function NavBar() {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const data = await fetch(`https://fakestoreapi.com/products`);
+        const response = await data.json();
+        setProducts(response);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllData();
+  }, []);
   return (
     <div>
       <nav className="bg-surface text-primary navbar rounded-box shadow-base-300/20 shadow-sm border-b-border border-b-2">
@@ -21,7 +38,7 @@ export default function NavBar() {
           </Link>
         </div>
       </nav>
-      <Outlet />
+      <Outlet context={{ products, cart, setCart }} />;
     </div>
   );
 }

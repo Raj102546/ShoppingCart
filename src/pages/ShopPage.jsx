@@ -1,30 +1,49 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Shop() {
-    const [url, setUrl] = useState();
-
-  const id = Math.floor(Math.random() * 10) + 1;
-  useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        const data = await fetch(`https://fakestoreapi.com/products/${id}`);
-        const response = await data.json();
-        setUrl(response);
-        console.log(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchAllData();
-  }, []);
+  const { products, setCart } = useOutletContext();
+  const addToCart = (product, index) => {
+    setCart(prev => [...prev, product]);
+  };
   return (
     <>
-      <div className="w-60% h-[300px] text-primary m-3 bg-surface border-border border-2 rounded-3xl">
+      <div className="w-60% text-primary m-3 bg-surface border-border border-2 rounded-3xl">
         <h1 className="text-4xl font-semibold m-5">All Products</h1>
-        {url ? <p>{url?.title}</p> : <p>Loading...</p>}
+        <div className="grid grid-cols-4 gap-2 p-10">
+          {products?.map((product, index) => (
+            <div
+              key={index}
+              className="bg-surface border border-border rounded-xl overflow-hidden flex flex-col"
+            >
+              <div className="bg-[#222] flex items-center justify-center h-40 p-4">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="max-h-32 object-contain"
+                />
+              </div>
+              <div className="p-3 flex flex-col gap-1 flex-1">
+                <span className="text-[10px] text-muted uppercase tracking-wide">
+                  {product.category}
+                </span>
+                <p className="text-sm text-primary line-clamp-2 leading-snug">
+                  {product.title}
+                </p>
+                <p className="text-accent font-medium text-base mt-auto pt-2">
+                  ${product.price}
+                </p>
+              </div>
+              <button
+                onClick={() => addToCart(product, index)}
+                className="mx-3 mb-3 py-2 bg-accent text-bg text-xs font-medium rounded-lg hover:cursor-pointer"
+              >
+                Add to cart
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-      <Link to="/">goback to home</Link>
     </>
   );
 }

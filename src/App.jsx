@@ -4,7 +4,7 @@ import Shop from "./pages/ShopPage";
 function App() {
   
   return (
-    <div className="bg-[#0f0f0f]">
+    <div className="bg-bg">
       <NavBar />
     </div>
   );
