@@ -2,15 +2,26 @@ import { Link, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Shop() {
-  const { products, setCart } = useOutletContext();
+  const { products, setCart, setSubTotal  } = useOutletContext();
   const addToCart = (product, index) => {
-    setCart(prev => [...prev, product]);
+    setCart((prev) => {
+      const exist = prev.find((item) => item.id == product.id);
+      if (exist) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    setSubTotal((prev) => prev + product.price);
   };
   return (
     <>
       <div className="w-60% text-primary m-3 bg-surface border-border border-2 rounded-3xl">
         <h1 className="text-4xl font-semibold m-5">All Products</h1>
-        <div className="grid grid-cols-4 gap-2 p-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-10">
           {products?.map((product, index) => (
             <div
               key={index}

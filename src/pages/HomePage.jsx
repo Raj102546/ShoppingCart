@@ -7,7 +7,7 @@ export default function Home() {
     <div>
       <div className="w-60% h-[300px] text-primary m-3 bg-surface flex flex-col justify-center items-center border-border border-2 rounded-3xl">
         <h1 className="text-4xl font-semibold m-2">Find what you love</h1>
-        <p className="text-muted m-2 font-semibold">
+        <p className="text-muted m-2 font-semibold text-xs md:text-lg">
           Browse our collection of products from the FakeStore API
         </p>
         <Link to="shop">
@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <div className="w-60% text-primary m-3 bg-surface border-border border-2 rounded-3xl">
         <h1 className="text-4xl font-semibold ml-15 mt-5">Featured</h1>
-        <div className="grid grid-cols-4 gap-2 p-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-10">
           {featured?.map((product, index) => (
             <div
               key={index}
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-3">
         <div className="h-20 text-primary m-3 bg-surface flex flex-col justify-center items-center border-border border-2 rounded-3xl">
           <h1 className="font-semibold">Free shipping</h1>
           <p className="font-semibold text-muted">On all orders over $50</p>
