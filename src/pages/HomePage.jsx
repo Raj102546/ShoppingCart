@@ -1,7 +1,7 @@
 import { Link, useOutletContext } from "react-router-dom";
 import Shop from "./ShopPage";
 export default function Home() {
-  const { products } = useOutletContext();
+  const { products, addToCart } = useOutletContext();
   const featured = products.slice(0, 4);
   return (
     <div>
@@ -42,7 +42,7 @@ export default function Home() {
                   ${product.price}
                 </p>
               </div>
-              <button className="mx-3 mb-3 py-2 bg-accent text-bg text-xs font-medium rounded-lg hover:cursor-pointer">
+              <button onClick={() => addToCart(product, index)} className="mx-3 mb-3 py-2 bg-accent text-bg text-xs font-medium rounded-lg hover:cursor-pointer">
                 Add to cart
               </button>
             </div>

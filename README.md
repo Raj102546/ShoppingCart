@@ -1,16 +1,48 @@
-# React + Vite
+# ShoppingCart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A shopping cart web app built with React and Tailwind CSS, featuring real product data from FakeStoreAPI.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [shopping-cart-zeta-five-66.vercel.app](https://shopping-cart-zeta-five-66.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse all products fetched from FakeStoreAPI
+- Add products to cart
+- Increase or decrease item quantity
+- Remove items from cart
+- Order summary with tax calculation
+- Responsive design for mobile and desktop
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- React Router
+- Tailwind CSS v4
+- Vite
+- FakeStoreAPI
+
+## Getting Started
+
+```bash
+# clone the repo
+git clone https://github.com/yourusername/ShoppingCart.git
+
+# navigate into the project
+cd ShoppingCart
+
+# install dependencies
+npm install
+
+# start the dev server
+npm run dev
+```
+
+## Screenshots
+
+> Add screenshots here
+
+## License
+
+MIT

@@ -6,6 +6,20 @@ export default function NavBar() {
   const [cart, setCart] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
 
+  const addToCart = (product, index) => {
+    setCart((prev) => {
+      const exist = prev.find((item) => item.id == product.id);
+      if (exist) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    setSubTotal((prev) => prev + product.price);
+  };
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -51,7 +65,7 @@ export default function NavBar() {
           </ul>
         </div>
       </nav>
-      <Outlet context={{ products, cart, setCart, subTotal, setSubTotal}} />;
+      <Outlet context={{ products, cart, setCart, subTotal, setSubTotal, addToCart}} />;
     </div>
   );
 }
