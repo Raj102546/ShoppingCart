@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import { ShopContext } from "../components/NavBar";
 export default function Cart() {
-  const { cart, setCart, subTotal, setSubTotal } = useOutletContext();
+  const { cart, setCart, subTotal, setSubTotal } = useContext(ShopContext);
     const total = (subTotal * 1.13).toFixed(2);
   
   const increment = (item) => {
@@ -93,11 +94,11 @@ export default function Cart() {
         ) : (
           <div className="w-[100%] md:w-64 bg-surface border border-border rounded-xl p-4 h-fit">
             <h2 className="text-primary font-medium mb-4">Order summary</h2>
-            <p className="text-muted">Subtotal : {subTotal.toFixed(2)}</p>
+            <p className="text-muted">Subtotal : ${subTotal.toFixed(2)}</p>
             <p className="text-muted">Shipping : Free</p>
             <p className="text-muted">Tax : 13%</p>
             <hr className="my-2"/>
-            <p >Total : <span className="text-accent">{total}</span></p>
+            <p >Total : <span className="text-accent">${total}</span></p>
             <button className="w-full bg-accent text-bg py-2 rounded-lg font-medium mt-4">
               Checkout
             </button>

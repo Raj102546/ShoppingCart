@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,createContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
+export const ShopContext = createContext(null)
+
 export default function NavBar() {
+  
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
@@ -65,7 +68,9 @@ export default function NavBar() {
           </ul>
         </div>
       </nav>
-      <Outlet context={{ products, cart, setCart, subTotal, setSubTotal, addToCart}} />;
+      <ShopContext.Provider value={{products, cart, addToCart, setCart, subTotal, setSubTotal}}>
+        <Outlet/>
+      </ShopContext.Provider>
     </div>
   );
 }

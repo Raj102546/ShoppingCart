@@ -1,7 +1,9 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Shop from "./ShopPage";
+import { useContext } from "react";
+import { ShopContext } from "../components/NavBar";
 export default function Home() {
-  const { products, addToCart } = useOutletContext();
+  const { products, addToCart } = useContext(ShopContext);
   const featured = products.slice(0, 4);
   return (
     <div>
